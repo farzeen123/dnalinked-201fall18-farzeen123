@@ -40,11 +40,11 @@ public class LinkStrand implements IDnaStrand {
 	public void initialize(String source) {
 		myFirst = new Node(source);
 		myLast = myFirst; // initialize mylast as well. point to same node at first then mylast iterates
-							// overnodes.
+		// overnodes.
 		myAppends = 0;
 		mySize = source.length();
 
-		Node myCurrent = myFirst;
+		myCurrent = myFirst;
 		myLocalIndex = 0;
 		myIndex = 0;
 
@@ -72,82 +72,49 @@ public class LinkStrand implements IDnaStrand {
 		// TODO Auto-generated method stub
 		return this;
 	}
-	
-	 private Node pointer=null;
+
+	private Node pointer=null;
 
 	private Node appendFirst(String s) {
-	    	
-	    	
-	    	//if(pointer!=null) {
-	    		StringBuilder copy=new StringBuilder(s);
-	    		copy.reverse();
-	    		
-	            Node tail=new Node(copy.toString());
-	            //creates a new node and append it to the myLast node
-	            tail.next=pointer;
-	            pointer=tail;
-	            //tail1=tail1.next;
-	        	//}
-	            return pointer;
-	        }
+
+
+
+		StringBuilder copy=new StringBuilder(s);
+		copy.reverse();
+
+		Node tail7=new Node(copy.toString());
+		//creates a new node and append it to the myLast node
+		tail7.next=pointer;
+		pointer=tail7;
+
+		return pointer;
+	}
 
 	@Override
 	public IDnaStrand reverse() {
-/*//		StringBuilder copy = new StringBuilder(myFirst.info); // temperory holder
-//		copy.reverse();
-//		LinkStrand org = new LinkStrand(copy.toString()); // has one node already
-		Node last1 = myLast;
-		Node pointer = myFirst;
-		Node first1 = myFirst;// a pointer in reverse dna strand
-		myFirst = myFirst.next;
 
-		while (first1 != null) {
-			StringBuilder copy1 = new StringBuilder(first1.info); // temperory holder
-			copy1.reverse(); // Node two = new Node(copy1.toString());
-			first1.info = copy1.toString();
 
-			// LinkStrand other = new LinkStrand(copy1.toString());
-
-			first1 = first1.next;
+		Node head2=myFirst; 
+		while(head2.next!=null) {
+			appendFirst(head2.info);
+			head2=head2.next;
 		}
 
-		Node prev = null;
+		appendFirst(head2.info);
+		LinkStrand rev=new LinkStrand(""); 
 
-		while (pointer != null) {
-			// System.out.println(pointer);
-			Node temp = pointer.next;
-			pointer.next = prev;
-			prev = pointer;
-			pointer = temp; // now the pointer moves to temp.
+		while(pointer!=null) {
+			rev.append(pointer.info);
+			pointer=pointer.next;
+		}
 
-			myFirst = pointer; // now my last1 is the pointer.
-
-		}*/
-		
-		    
-	
-		    	
-		      Node head=myFirst; 
-		      while(head.next!=null) {
-		    	  appendFirst(head.info);
-		    	  head=head.next;
-		      }
-		      
-		   appendFirst(head.info);
-		   LinkStrand ans=new LinkStrand(""); 
-		   
-		   while(pointer!=null) {
-			   ans.append(pointer.info);
-			   pointer=pointer.next;
-		   }
-		   
-		   return ans;
-		    }
-		
-		
+		return rev;
+	}
 
 
-	
+
+
+
 
 	/**
 	 * @param
@@ -161,47 +128,37 @@ public class LinkStrand implements IDnaStrand {
 
 	@Override
 	public char charAt(int index) {
+
 		if(index < 0) {
-			throw new IndexOutOfBoundsException("");
+			throw new IndexOutOfBoundsException();
 		}
-		
-		
-		
+
+
+		if(myIndex>index) {
+
+			myIndex = 0;
+			myCurrent = myFirst;
+			myLocalIndex =0;
+	
+		}
+
 		while (myIndex != index) {
 			myIndex++;
 			myLocalIndex++;
-			
+
+
 			if (myLocalIndex >= myCurrent.info.length()) {
 				myLocalIndex = 0;
 				myCurrent = myCurrent.next;
-			
+
 			}
-		}
-
-
-		/*while (myIndex != index) {
-
-			if (myLocalIndex >= myCurrent.info.length()) {
-				if(myCurrent.next != null) {
-					myLocalIndex = -1;
-				}
-				else if(myCurrent.next ==null) {
-					throw new IndexOutOfBoundsException("");
-
-
-				}
+			if(myCurrent == null) {
+				throw new IndexOutOfBoundsException();
 
 			}
 
-
-			myCurrent = myCurrent.next;
-
 		}
-
-		myIndex++;
-		myLocalIndex++;
-*/
-
+		
 		return myCurrent.info.charAt(myLocalIndex);
 
 		// TODO Auto-generated method stub
