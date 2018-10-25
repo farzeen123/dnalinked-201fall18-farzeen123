@@ -54,8 +54,10 @@ public class LinkStrand implements IDnaStrand {
 
 	@Override
 	public IDnaStrand getInstance(String source) {
+		
+	
 		// TODO Auto-generated method stub
-		return null;
+		return new StringStrand(source);
 	}
 
 	@Override
