@@ -1,7 +1,7 @@
 
 public class LinkStrand implements IDnaStrand {
-	private int myIndex;
-	private int myLocalIndex;
+	private int myIndex=0;
+	private int myLocalIndex=0;
 	private Node myCurrent;
 
 	private class Node {
@@ -16,7 +16,7 @@ public class LinkStrand implements IDnaStrand {
 
 	private Node myFirst, myLast;
 	private long mySize;
-	private int myAppends;
+	private int myAppends =0;
 	private LinkStrand next;
 
 	public LinkStrand() {
@@ -41,12 +41,12 @@ public class LinkStrand implements IDnaStrand {
 		myFirst = new Node(source);
 		myLast = myFirst; // initialize mylast as well. point to same node at first then mylast iterates
 		// overnodes.
-		myAppends = 0;
+		//myAppends;
 		mySize = source.length();
 
 		myCurrent = myFirst;
-		myLocalIndex = 0;
-		myIndex = 0;
+		//myLocalIndex = 0;
+		//myIndex = 0;
 
 		// REMEMBER TO ADD SOURCE LENGTH AS WELL,ORIGINAL LENGTH.
 
@@ -55,8 +55,6 @@ public class LinkStrand implements IDnaStrand {
 	@Override
 	public IDnaStrand getInstance(String source) {
 		
-	
-		// TODO Auto-generated method stub
 		return new StringStrand(source);
 	}
 
@@ -85,7 +83,8 @@ public class LinkStrand implements IDnaStrand {
 		copy.reverse();
 
 		Node tail7=new Node(copy.toString());
-		//creates a new node and append it to the myLast node
+		//creates a new node
+		//append it to the myLast node
 		tail7.next=pointer;
 		pointer=tail7;
 
