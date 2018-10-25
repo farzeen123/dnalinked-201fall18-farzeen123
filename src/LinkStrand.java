@@ -1,8 +1,8 @@
 
 public class LinkStrand implements IDnaStrand {
-	int myIndex;
-	int myLocalIndex;
-	Node myCurrent;
+	private int myIndex;
+	private int myLocalIndex;
+	private Node myCurrent;
 
 	private class Node {
 		String info;
@@ -125,8 +125,7 @@ public class LinkStrand implements IDnaStrand {
 		}*/
 		
 		    
-		  
-		  
+	
 		    	
 		      Node head=myFirst; 
 		      while(head.next!=null) {
