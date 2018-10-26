@@ -1,7 +1,7 @@
 
 public class LinkStrand implements IDnaStrand {
-	private int myIndex=0;
-	private int myLocalIndex=0;
+	private int myIndex;
+	private int myLocalIndex;
 	private Node myCurrent;
 
 	private class Node {
@@ -16,7 +16,7 @@ public class LinkStrand implements IDnaStrand {
 
 	private Node myFirst, myLast;
 	private long mySize;
-	private int myAppends =0;
+	private int myAppends;
 	private LinkStrand next;
 
 	public LinkStrand() {
@@ -40,13 +40,13 @@ public class LinkStrand implements IDnaStrand {
 	public void initialize(String source) {
 		myFirst = new Node(source);
 		myLast = myFirst; // initialize mylast as well. point to same node at first then mylast iterates
-		// overnodes.
-		//myAppends;
+	
+		myAppends = 0;
 		mySize = source.length();
 
 		myCurrent = myFirst;
-		//myLocalIndex = 0;
-		//myIndex = 0;
+		myLocalIndex = 0;
+		myIndex = 0;
 
 		// REMEMBER TO ADD SOURCE LENGTH AS WELL,ORIGINAL LENGTH.
 
@@ -165,12 +165,13 @@ public class LinkStrand implements IDnaStrand {
 		// TODO Auto-generated method stub
 
 	}
-
+    
 	public String toString() {
+		Node tempo = myFirst;
 		StringBuilder obj = new StringBuilder();
-		while (myFirst != null) {
-			obj.append(myFirst.info);
-			myFirst = myFirst.next;
+		while (tempo != null) {
+			obj.append(tempo.info);
+			tempo = tempo.next;
 		}
 		return obj.toString(); // returns the concatenation version of each node.
 	}

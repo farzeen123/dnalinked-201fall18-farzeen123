@@ -1,9 +1,77 @@
-Your Name here
-Your NetID here
-Your Partner's name here (or erase)
-Your Partner's NetID here (or erase)
+Your Name here  Farzeen Najam
+Your NetID here   fn26
+Your Partner's name here (or erase) no partner.
+Your Partner's NetID here (or erase) no partner.
 
 Questions here will come from the assignment
 writeup. Be sure to copy paste questions and 
 your explanations before you push to GitHub and
-do that before uploading to Gradescope
+do that before uploading to Gradescope.
+
+
+STRINGSTRAND:
+dna length = 4,639,221
+cutting at enzyme gaattc
+-----
+Class	                splicee	      recomb	time	appends
+-----
+StringStrand:	            256	      4,800,471	0.693	1290
+StringStrand:	            512	      4,965,591	0.688	1290
+StringStrand:	          1,024	      5,295,831	0.749	1290
+StringStrand:	          2,048	      5,956,311	0.871	1290
+StringStrand:	          4,096	      7,277,271	1.057	1290
+StringStrand:	          8,192	      9,919,191	1.608	1290
+StringStrand:	         16,384	     15,203,031	2.424	1290
+
+StringStrand:	         32,768	     25,770,711	4.814	1290
+StringStrand:	         65,536	     46,906,071	10.148	1290
+StringStrand:	        131,072	     89,176,791	21.007	1290
+StringStrand:	        262,144	    173,718,231	40.833	1290
+StringStrand:	        524,288	    342,801,111	53.228	1290
+Exception in thread "main" java.lang.OutOfMemoryError: Java heap space
+	at StringStrand.append(StringStrand.java:70)
+	at IDnaStrand.cutAndSplice(IDnaStrand.java:41)
+	at DNABenchmark.lambda$0(DNABenchmark.java:76)
+	at DNABenchmark$$Lambda$179/1337335626.run(Unknown Source)
+	at java.base/java.lang.Thread.run(Thread.java:844)
+	at DNABenchmark.strandSpliceBenchmark(DNABenchmark.java:79)
+	at DNABenchmark.main(DNABenchmark.java:113)
+	
+yes, because every time appends run, it is half which is b. Since cut and splice method is running
+time increases since if u add one string to another(S+S.....) over multiple time its N^2.
+so b^2 is constant since it appends the strand by half. The time definitely increases from
+0.693 to 53.228.	
+	
+	
+	
+	dna length = 4,639,221
+cutting at enzyme gaattc
+-----
+Class	                splicee	      recomb	time	appends
+-----
+StringBuilderStrand:	            256	      4,800,471	0.028	1290
+StringBuilderStrand:	            512	      4,965,591	0.021	1290
+StringBuilderStrand:	          1,024	      5,295,831	0.007	1290
+StringBuilderStrand:	          2,048	      5,956,311	0.011	1290
+StringBuilderStrand:	          4,096	      7,277,271	0.006	1290
+StringBuilderStrand:	          8,192	      9,919,191	0.008	1290
+StringBuilderStrand:	         16,384	     15,203,031	0.014	1290
+StringBuilderStrand:	         32,768	     25,770,711	0.022	1290
+StringBuilderStrand:	         65,536	     46,906,071	0.044	1290
+StringBuilderStrand:	        131,072	     89,176,791	0.078	1290
+StringBuilderStrand:	        262,144	    173,718,231	0.222	1290
+StringBuilderStrand:	        524,288	    342,801,111	0.597	1290
+Exception in thread "main" java.lang.OutOfMemoryError: Java heap space
+	at java.base/java.util.Arrays.copyOf(Arrays.java:3744)
+	at java.base/java.lang.AbstractStringBuilder.ensureCapacityInternal(AbstractStringBuilder.java:146)
+	at java.base/java.lang.AbstractStringBuilder.append(AbstractStringBuilder.java:512)
+	at java.base/java.lang.StringBuilder.append(StringBuilder.java:141)
+	at StringBuilderStrand.append(StringBuilderStrand.java:70)
+	at IDnaStrand.cutAndSplice(IDnaStrand.java:41)
+	at DNABenchmark.strandSpliceBenchmark(DNABenchmark.java:67)
+	at DNABenchmark.main(DNABenchmark.java:113)
+	
+	yes, in this case, time increases as cut and splice cuts the strand into b and half of b that is
+	as append is called, time increases as well linearly tho. As seen by the code, the time increases linearly
+	as append is called. 0.028 to 0.597 unlike  stringStrand.
+	
