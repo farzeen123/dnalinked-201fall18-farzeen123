@@ -75,3 +75,45 @@ Exception in thread "main" java.lang.OutOfMemoryError: Java heap space
 	as append is called, time increases as well linearly tho. As seen by the code, the time increases linearly
 	as append is called. 0.028 to 0.597 unlike  stringStrand.
 	
+	
+dna length = 4,639,221
+cutting at enzyme gaattc
+-----
+Class	                splicee	      recomb	time	appends
+-----
+LinkStrand:	            256	      4,800,471	0.031	1290
+LinkStrand:	            512	      4,965,591	0.021	1290
+LinkStrand:	          1,024	      5,295,831	0.008	1290
+LinkStrand:	          2,048	      5,956,311	0.010	1290
+LinkStrand:	          4,096	      7,277,271	0.008	1290
+LinkStrand:	          8,192	      9,919,191	0.007	1290
+LinkStrand:	         16,384	     15,203,031	0.009	1290
+LinkStrand:	         32,768	     25,770,711	0.009	1290
+LinkStrand:	         65,536	     46,906,071	0.005	1290
+LinkStrand:	        131,072	     89,176,791	0.007	1290
+LinkStrand:	        262,144	    173,718,231	0.010	1290
+LinkStrand:	        524,288	    342,801,111	0.012	1290
+LinkStrand:	      1,048,576	    680,966,871	0.006	1290
+LinkStrand:	      2,097,152	  1,357,298,391	0.014	1290
+LinkStrand:	      4,194,304	  2,709,961,431	0.013	1290
+LinkStrand:	      8,388,608	  5,415,287,511	0.008	1290
+LinkStrand:	     16,777,216	 10,825,939,671	0.018	1290
+LinkStrand:	     33,554,432	 21,647,243,991	0.007	1290
+LinkStrand:	     67,108,864	 43,289,852,631	0.009	1290
+LinkStrand:	    134,217,728	 86,575,069,911	0.024	1290
+LinkStrand:	    268,435,456	173,145,504,471	0.023	1290
+LinkStrand:	    536,870,912	346,286,373,591	0.010	1290
+Exception in thread "main" java.lang.OutOfMemoryError: Java heap space
+	at java.base/java.util.Arrays.copyOf(Arrays.java:3744)
+	at java.base/java.lang.AbstractStringBuilder.ensureCapacityInternal(AbstractStringBuilder.java:146)
+	at java.base/java.lang.AbstractStringBuilder.append(AbstractStringBuilder.java:512)
+	at java.base/java.lang.StringBuilder.append(StringBuilder.java:141)
+	at DNABenchmark.main(DNABenchmark.java:110)
+	
+It does not change because unlike two programs before it is not creating another
+string. It is not using concatenation or appending of strings together to 
+invoke cut and splice method.Linked lists are used  to point on the different nodes
+and move the pointers alongside so it saves time.Multiple pointers can point to same strands
+of enzymes etc. so cut and splice method just creates new Nodes. The memory is exhausted at
+the specific strand since in linkedlists everytime cut and splice is working, equal nodes are being
+created which means in the end everytime we run this method, it is gonna use same memory.
